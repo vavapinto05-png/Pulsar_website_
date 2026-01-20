@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pulsar IA | Réceptionniste IA Vocale 24/7</title>
+    <meta name="description" content="Réceptionniste IA qui répond à vos appels 24/7, prend les réservations et remplit votre agenda automatiquement. Transformez chaque appel en rendez-vous.">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-light: #818cf8;
+            --accent: #06b6d4;
+            --dark-bg: #0f172a;
+            --card-bg: #1e293b;
+            --ultra-dark: #020617;
+            --gray-text: #94a3b8;
+            --light-text: #cbd5e1;
+            --white: #ffffff;
+            --success: #10b981;
+            --error: #ef4444;
+            --radius: 12px;
+            --radius-lg: 16px;
+            --radius-pill: 50px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--light-text);
+            line-height: 1.6;
+            background-color: var(--ultra-dark);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--white);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Badge */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            border-radius: var(--radius-pill);
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 32px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            padding: 160px 0 120px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--ultra-dark) 0%, var(--dark-bg) 100%);
+            overflow: hidden;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            opacity: 0.15;
+        }
+
+        .video-background {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: cover;
+            filter: grayscale(100%) brightness(0.4);
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(2, 6, 23, 0.9) 0%,
+                rgba(15, 23, 42, 0.7) 50%,
+                rgba(99, 102, 241, 0.2) 100%);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 24px;
+            background: linear-gradient(90deg, var(--white) 0%, var(--primary-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.125rem, 2vw, 1.5rem);
+            color: var(--gray-text);
+            margin-bottom: 32px;
+            max-width: 600px;
+        }
+
+        /* Benefit Text - Au-dessus des boutons */
+        .benefit-text {
+            font-size: 1.25rem;
+            color: var(--light-text);
+            margin-bottom: 32px;
+            padding: 20px 0;
+            font-weight: 500;
+            max-width: 600px;
+        }
+
+        .benefit-text i {
+            color: var(--success);
+            margin-right: 10px;
+        }
+
+        /* CTA Buttons */
+        .cta-group {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 18px 36px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 1.125rem;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-family: 'Inter', sans-serif;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--white);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px -10px rgba(99, 102, 241, 0.4);
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--light-text);
+            border: 2px solid var(--card-bg);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .btn i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 140px 0 80px;
+                text-align: center;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .cta-group {
+                flex-direction: column;
+                margin-bottom: 40px;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.25rem;
+                margin-bottom: 24px;
+            }
+
+            .benefit-text {
+                font-size: 1.125rem;
+                padding: 15px 0;
+                margin-bottom: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.125rem;
+            }
+
+            .btn {
+                padding: 16px 24px;
+                font-size: 1rem;
+            }
+
+            .benefit-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-background">
+            <div class="video-overlay"></div>
+            <!-- Note: Replace with your actual demo video -->
+            <video class="video-background" autoplay muted loop playsinline>
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-smartphone-with-a-green-screen-4282-large.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <div class="container">
+            <div class="hero-content">
+                <!-- Badge -->
+                <div class="badge">
+                    <i class="fas fa-rocket"></i>
+                    <span>Réceptionniste IA 24/7</span>
+                </div>
+
+                <!-- Main Headline -->
+                <h1>Convertissez vos appels manqués en opportunité</h1>
+
+                <!-- Subtitle -->
+                <p class="hero-subtitle">
+                    Notre solution répond à 100% de vos appels à votre place, prend les réservations et remplit votre agenda automatiquement.
+                </p>
+
+                <!-- Benefit Text - AU-DESSUS des boutons -->
+                <p class="benefit-text">
+                    <i class="fas fa-headset"></i>
+                    Déléguez la gestion du téléphone pour vous concentrer sur votre activité
+                </p>
+
+                <!-- CTA Buttons -->
+                <div class="cta-group">
+                    <a href="https://calendly.com/pulsar-ia-fr/30min" class="btn btn-primary" target="_blank">
+                        <i class="fas fa-calendar-alt"></i>
+                        Obtenir mon Réceptionniste IA
+                    </a>
+                    <a href="https://calendly.com/pulsar-ia-fr/30min" class="btn btn-secondary" target="_blank">
+                        <i class="fas fa-play-circle"></i>
+                        Obtenir une démo
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Video fallback for mobile
+        const video = document.querySelector('.video-background');
+        if (video) {
+            video.addEventListener('error', function() {
+                // If video fails to load, show gradient background
+                document.querySelector('.hero-background').style.background = 
+                    'linear-gradient(135deg, var(--ultra-dark) 0%, var(--dark-bg) 100%)';
+            });
+        }
+
+        // Check if video can autoplay
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.querySelector('.video-background');
+            if (video) {
+                const playPromise = video.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        // Auto-play was prevented, show fallback
+                        document.querySelector('.hero-background').style.background = 
+                            'linear-gradient(135deg, var(--ultra-dark) 0%, var(--dark-bg) 100%)';
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>
